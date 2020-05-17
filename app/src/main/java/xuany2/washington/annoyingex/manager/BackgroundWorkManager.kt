@@ -16,10 +16,10 @@ class BackgroundWorkManager(private val context: Context) {
         }
 
         val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresCharging(true)
             .build()
 
-        val workRequest = PeriodicWorkRequestBuilder<SendAMessageWorker>(15, TimeUnit.MINUTES)
+        val workRequest = PeriodicWorkRequestBuilder<SendAMessageWorker>(20, TimeUnit.MINUTES)
             .setInitialDelay(5000, TimeUnit.MILLISECONDS)
             .setConstraints(constraints)
             .addTag(WORK_REQUEST_TAG)

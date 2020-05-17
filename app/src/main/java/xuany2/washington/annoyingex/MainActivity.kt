@@ -12,10 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        (application as AnnoyingExApp).apiManager.fetchSentences(
-            {all -> fillMessage(all)}, { Toast.makeText(this, "fetch error", Toast.LENGTH_SHORT).show()}
-        )
-
         btnStart.setOnClickListener {
             (application as AnnoyingExApp).backgroundWorkManager.startSendingMessages()
         }
@@ -23,9 +19,5 @@ class MainActivity : AppCompatActivity() {
         btnStop.setOnClickListener {
             (application  as AnnoyingExApp).backgroundWorkManager.stopWork()
         }
-    }
-
-    private fun fillMessage(all: AllMessage) {
-        (application as AnnoyingExApp).fillMessages(all)
     }
 }
