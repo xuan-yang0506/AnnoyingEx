@@ -1,4 +1,4 @@
-package com.ericchee.arewethereyet
+package xuany2.washington.annoyingex.manager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -28,7 +28,7 @@ class ExNotificationManager(
         val pendingDealsIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.ic_sms_black_24dp)
             .setContentTitle("New message from ex")
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

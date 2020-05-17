@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import xuany2.washington.annoyingex.model.AllMessage
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private var allMessage: AllMessage ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,15 +17,15 @@ class MainActivity : AppCompatActivity() {
         )
 
         btnStart.setOnClickListener {
-            allMessage?.let { all: AllMessage ->
-                val index = Random.nextInt(0, all.messages.size)
-                val message: String = all.messages[index]
-                (application as AnnoyingExApp).exNotificationManager.sendNewMessage(message)
-            }
+            (application as AnnoyingExApp).backgroundWorkManager.startSendingMessages()
+        }
+
+        btnStop.setOnClickListener {
+            (application  as AnnoyingExApp).backgroundWorkManager.stopWork()
         }
     }
 
     private fun fillMessage(all: AllMessage) {
-        allMessage = all
+        (application as AnnoyingExApp).fillMessages(all)
     }
 }
