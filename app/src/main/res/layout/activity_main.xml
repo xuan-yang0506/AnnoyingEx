@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/btnStart"
         app:layout_constraintBottom_toTopOf="@id/btnStop"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="15sp"/>
+        android:textSize="15sp"
+        android:paddingLeft="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
