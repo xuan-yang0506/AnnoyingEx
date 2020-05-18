@@ -12,6 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        intent.getStringExtra(SendAMessageWorker.MESSAGE_STR)?.let {
+            text.text = """
+                Message from ${getString(R.string.exName)}:
+                    $it
+            """.trimIndent()
+        }
+
         btnStart.setOnClickListener {
             (application as AnnoyingExApp).backgroundWorkManager.startSendingMessages()
         }

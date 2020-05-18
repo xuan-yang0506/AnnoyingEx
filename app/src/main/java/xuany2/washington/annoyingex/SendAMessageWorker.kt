@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
@@ -32,12 +31,13 @@ class SendAMessageWorker(private val context: Context, workParams: WorkerParamet
 
     fun sendOneMessage(message: String) {
         val intent = Intent(context, MainActivity::class.java)
+        intent.putExtra(MESSAGE_STR, message)
 
         val pendingDealsIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_sms_black_24dp)
-            .setContentTitle("Donald Trump")
+            .setContentTitle(context.getString(R.string.exName))
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingDealsIntent)
@@ -71,5 +71,6 @@ class SendAMessageWorker(private val context: Context, workParams: WorkerParamet
 
     companion object {
         const val CHANNEL_ID = "CHANNEL_ID"
+        const val MESSAGE_STR = "MESSAGE_STR"
     }
 }
